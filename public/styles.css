@@ -1,0 +1,62 @@
+*{
+	margin:0;
+}
+header{
+    display:flex;
+    background:rgb(52, 73, 94);
+    padding:10px;
+    color:white;
+}
+
+h3{
+	padding:10px;
+}
+
+.time{
+    margin-left:auto;
+}
+
+
+
+.questions{
+	padding:10px;
+	width:80%;
+	font-size:2rem;
+}
+
+.options{
+	font-size:1.5rem;
+}
+
+.container{
+	display:grid;
+	grid-template-rows: 1;
+	grid-template-columns: 70% 30%;
+
+}
+
+.questionandNumber{
+	background:rgb(149, 165, 166);
+}
+
+.questionNo{
+	background:rgb(46, 204, 113);
+	padding:10px;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.num{
+	padding:2px;
+}
