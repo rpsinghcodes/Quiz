@@ -1,11 +1,14 @@
 import React from 'react';
 import QuestionNo from './QuestionNo';
+import Qs from '../Questions';
 const Questions=()=>{
+
 	return(
 		<div className='container'>
 		<div className='questionandNumber'>
 			<div className='questions'>
 			Q1.What is the Full Form of CSS?
+			{Qs[0].Question}
 			</div>
 			<div className='options'>
 			<form method='post'>
