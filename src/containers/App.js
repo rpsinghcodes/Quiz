@@ -13,7 +13,7 @@ const App = () => {
         <Route exact path="/start">
           <Start />
         </Route>
-        <Route exact path="/questions/:id">
+        <Route exact path="/questions/:id/:time">
           <Question />
         </Route>
       </Switch>
