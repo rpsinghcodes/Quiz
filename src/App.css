@@ -58,3 +58,18 @@ button {
 .num{
 	padding:2px;
 }
+.footer{
+  background:rgb(68, 189, 50);
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 50% 50%;
+  padding:39px;
+  text-align:center;
+}
+
+.pre, .next{
+  padding:10px 30px;
+  width:30px;
+  margin:auto;
+  font-size:2rem;
+}
