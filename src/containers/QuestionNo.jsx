@@ -1,13 +1,14 @@
 import React from 'react';
 import lodash from 'lodash';
-const QuestionNo = () =>{
+const QuestionNo = (props) =>{
 			let card = [];
 lodash.times(50, (i) => {
-  card.push(<button name={i}>1</button>);
+  card.push(<button name={i} id={props.id}>1</button>);
 });
 	return(
 	<div >
 		{card}
+		<button>Submit</button>
 		</div>
 		)
 }
