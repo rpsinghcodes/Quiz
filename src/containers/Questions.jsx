@@ -29,10 +29,10 @@ const Questions=()=>{
 			</div>
 			<div className='options'>
 			<form method='post'>
-			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value={que + " "+ optA} checked={(false ? "checked" : undefined)} />{optA}</h3>
-			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='B' checked={(false ? "checked" : undefined)}/>{optB}</h3>
-			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='C' checked={(false ? "checked" : undefined)} />{optC}</h3>
-			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='D' checked={(false ? "checked" : undefined)} />{optD}</h3>
+			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value={que + " "+ optA} checked={false} />{optA}</h3>
+			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='B' checked={false}/>{optB}</h3>
+			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='C' checked={false} />{optC}</h3>
+			<h3><input type="radio" onClick={handleSeletectedQuestion} name="option" value='D' checked={false} />{optD}</h3>
 			</form>
 			</div>
 			</div>
