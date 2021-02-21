@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Header = ({setTimeOut}) => {
   
-  const totalTime = 1;
+  const totalTime = 30;
   const startTime = new Date();
   const [timeElapsed, setTimeElapsed] = useState(0);
   
@@ -16,7 +16,7 @@ const Header = ({setTimeOut}) => {
   const remainingTime = totalTime * 60 - timeElapsed;
   const sec = remainingTime % 60;
   const min = Math.floor(remainingTime / 60) % 60;
-  if(sec==0 && min ==0){
+  if(remainingTime === 0){
     setTimeOut(true);
   }
   
