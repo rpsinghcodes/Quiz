@@ -4,7 +4,11 @@ import questions_data from "../Data/questions_data";
 import Footer from "./Footer";
 
 const Questions = () => {
-  const [questionNumber, setQuestionNumber] = useState(0);
+  // if queno exist set questionNumber to that
+  const [questionNumber, setQuestionNumber] = useState(
+    parseInt(sessionStorage.queno) || 0
+  );
+
   let showNext = true;
   const nextQuestion = () => {
     if (questionNumber === 8) {
@@ -16,15 +20,26 @@ const Questions = () => {
     let temp = choosenOpt;
     temp[questionNumber] = n;
     setChoosenOpt(temp);
+    // Updating stored answer
+    sessionStorage.choosenOpt = JSON.stringify(choosenOpt);
   };
+
   const prevQuestion = () => {
     setQuestionNumber(questionNumber - 1);
   };
-  const { que, optA, optB, optC, optD } = questions_data[questionNumber];
 
-  const [choosenOpt, setChoosenOpt] = useState([]);
+  const { que, optA, optB, optC, optD } = questions_data[questionNumber];
+  // if choosenOpt exist in storage than set choosOpt(used here) to that
+  const [choosenOpt, setChoosenOpt] = useState(
+    sessionStorage.choosenOpt ? JSON.parse(sessionStorage.choosenOpt) : []
+  );
+  //if data not stored in storage than initialize them in storage
+  if (!sessionStorage.choosenOpt)
+    sessionStorage.setItem("choosenOpt", JSON.stringify(choosenOpt));
+  if (!sessionStorage.queno) sessionStorage.queno = String(questionNumber);
 
   useEffect(() => {
+    sessionStorage.queno = questionNumber; // when questionNumber changes update queno
     let x = choosenOpt[questionNumber];
     if (x !== undefined) {
       document.getElementsByName("option")[x].click();
@@ -45,7 +60,7 @@ const Questions = () => {
                   type="radio"
                   onClick={() => handleSeletectedQuestion(0)}
                   name="option"
-                  value={que + " " + optA}
+                  value="A"
                 />
                 {optA}
               </h3>
