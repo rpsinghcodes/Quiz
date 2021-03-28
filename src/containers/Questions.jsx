@@ -2,50 +2,48 @@ import React, { useEffect, useState } from "react";
 import QuestionNo from "./QuestionNo";
 import questions_data from "../Data/questions_data";
 import Footer from "./Footer";
+// import MCQ from "./MCQ";
 
 const Questions = () => {
-  // if queno exist set questionNumber to that
-  const [questionNumber, setQuestionNumber] = useState(
-    parseInt(sessionStorage.queno) || 0
-  );
-
-  let showNext = true;
+  // For Next btn when to hide.
+  const [questionNumber, setQuestionNumber] = useState(0);
   const nextQuestion = () => {
-    if (questionNumber === 8) {
-      showNext = false;
-    }
     setQuestionNumber(questionNumber + 1);
   };
-  const handleSeletectedQuestion = n => {
+
+  const [choosenOpt, setChoosenOpt] = useState([]);
+  const handleSeletectedQuestion = (n) => {
     let temp = choosenOpt;
     temp[questionNumber] = n;
-    setChoosenOpt(temp);
-    // Updating stored answer
-    sessionStorage.choosenOpt = JSON.stringify(choosenOpt);
+    // setChoosenOpt(temp);
+    setChoosenOpt((preValue) => {
+      return [...preValue, temp];
+    });
+    console.log(n);
   };
-
   const prevQuestion = () => {
     setQuestionNumber(questionNumber - 1);
   };
-
+  // Destructing question file e.g questions_data[questionNumber].que
   const { que, optA, optB, optC, optD } = questions_data[questionNumber];
-  // if choosenOpt exist in storage than set choosOpt(used here) to that
-  const [choosenOpt, setChoosenOpt] = useState(
-    sessionStorage.choosenOpt ? JSON.parse(sessionStorage.choosenOpt) : []
-  );
-  //if data not stored in storage than initialize them in storage
-  if (!sessionStorage.choosenOpt)
-    sessionStorage.setItem("choosenOpt", JSON.stringify(choosenOpt));
-  if (!sessionStorage.queno) sessionStorage.queno = String(questionNumber);
 
-  useEffect(() => {
-    sessionStorage.queno = questionNumber; // when questionNumber changes update queno
-    let x = choosenOpt[questionNumber];
-    if (x !== undefined) {
-      document.getElementsByName("option")[x].click();
-    } else document.getElementById("nothing").click();
-  }, [questionNumber]);
+  // useEffect(() => {
+  //   let x = choosenOpt[questionNumber];
+  //   if (x !== undefined) {
+  //     document.getElementsByName("option")[x].click();
+  //   } else document.getElementById("nothing").click();
+  // }, [questionNumber]);
 
+  const handleClick = (x) => {
+    let array = document.getElementsByClassName("options");
+    for (var i = 0; i < array.length; i++) {
+      array[i].classList.remove("selectedOption");
+    }
+    document.getElementById(x).classList.toggle("selectedOption");
+  };
+  const handleAnswer = (value) => {
+    console.log("value:", value);
+  };
   return (
     <div>
       <div className="container">
@@ -56,40 +54,64 @@ const Questions = () => {
           <div className="options">
             <form method="post">
               <h3>
-                <input
-                  type="radio"
-                  onClick={() => handleSeletectedQuestion(0)}
+                <div
+                  id="a"
+                  className="options"
                   name="option"
-                  value="A"
-                />
-                {optA}
+                  onClick={(x) => {
+                    handleAnswer(x.target.attributes.value.value);
+                    handleClick("a");
+                    handleSeletectedQuestion(0);
+                  }}
+                  value={optA}
+                >
+                  {optA}
+                </div>
               </h3>
               <h3>
-                <input
-                  type="radio"
-                  onClick={() => handleSeletectedQuestion(1)}
+                <div
+                  id="b"
+                  className="options"
                   name="option"
-                  value="B"
-                />
-                {optB}
+                  onClick={(x) => {
+                    handleAnswer(x.target.attributes.value.value);
+                    handleClick("b");
+                    handleSeletectedQuestion(1);
+                  }}
+                  value={optB}
+                >
+                  {optB}
+                </div>
               </h3>
               <h3>
-                <input
-                  type="radio"
-                  onClick={() => handleSeletectedQuestion(2)}
+                <div
+                  id="c"
+                  className="options"
                   name="option"
-                  value="C"
-                />
-                {optC}
+                  onClick={(x) => {
+                    handleAnswer(x.target.attributes.value.value);
+                    handleClick("c");
+                    handleSeletectedQuestion(2);
+                  }}
+                  value={optC}
+                >
+                  {optC}
+                </div>
               </h3>
               <h3>
-                <input
-                  type="radio"
-                  onClick={() => handleSeletectedQuestion(3)}
+                <div
+                  id="d"
+                  className="options"
                   name="option"
-                  value="D"
-                />
-                {optD}
+                  onClick={(x) => {
+                    handleAnswer(x.target.attributes.value.value);
+                    handleClick("d");
+                    handleSeletectedQuestion(3);
+                  }}
+                  value={optD}
+                >
+                  {optD}
+                </div>
               </h3>
               <input
                 type="radio"
