@@ -1,49 +1,44 @@
-*{
-  margin:0;
+* {
+  margin: 0;
 }
-header{
-    display:flex;
-    background:rgb(52, 73, 94);
-    padding:10px;
-    color:white;
-}
- 
-h3{
-  padding:10px;
+header {
+  display: flex;
+  background: rgb(52, 73, 94);
+  padding: 10px;
+  color: white;
 }
 
-.time{
-    margin-left:auto;
+h3 {
+  padding: 10px;
 }
 
-.questions{
-  padding:10px;
-  width:80%;
-  font-size:2rem;
+.time {
+  margin-left: auto;
 }
 
-.options{
-  font-size:1.5rem;
+.questions {
+  padding: 10px;
+  width: 80%;
+  font-size: 2rem;
 }
 
-.container{
-  display:grid;
+.container {
+  display: grid;
   grid-template-rows: 1;
   grid-template-columns: 70% 30%;
-
 }
 
-.questionandNumber{
-  background:rgb(149, 165, 166);
+.questionandNumber {
+  background: rgb(149, 165, 166);
 }
 
-.questionNo{
-  background:rgb(46, 204, 113);
-  padding:10px;
+.questionNo {
+  background: rgb(46, 204, 113);
+  padding: 10px;
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px;
@@ -55,41 +50,39 @@ button {
   cursor: pointer;
 }
 
-.num{
-  padding:2px;
+.num {
+  padding: 2px;
 }
-.footer{
-  background:rgb(68, 189, 50);
+
+.footer {
+  background: rgb(68, 189, 50);
   display: grid;
   grid-template-rows: 1;
   grid-template-columns: 50% 50%;
-  padding:39px;
-  text-align:center;
+  padding: 39px;
+  text-align: center;
 }
 
-.pre, .next{
-  padding:10px 30px;
-  width:30px;
-  margin:auto;
-  font-size:2rem;
+.pre,
+.next {
+  padding: 10px 30px;
+  width: 30px;
+  margin: auto;
+  font-size: 2rem;
 }
 
 /* MCQ css*/
 
-.options{
-  border-radius:8px;
-  border:1px solid red;
-  padding:12px;
-
-}
-.a, .b, .c, .d{
-  margin: 9px 0;
-  width:50%;
+.option {
+  font-size: 1.5em;
+  border-radius: 8px;
+  border: 1px solid red;
+  padding: 12px;
+  margin: 5px 0;
+  width: 50%;
 }
 
-
-.selectedOption{
-  background:black;
-  color:white;
+.selectedOption {
+  background: black;
+  color: white;
 }
-
