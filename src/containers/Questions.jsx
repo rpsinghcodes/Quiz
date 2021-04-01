@@ -5,126 +5,88 @@ import Footer from "./Footer";
 // import MCQ from "./MCQ";
 
 const Questions = () => {
-  // For Next btn when to hide.
   const [questionNumber, setQuestionNumber] = useState(0);
+  const [choosenOpt, setChoosenOpt] = useState([]);
+
   const nextQuestion = () => {
     setQuestionNumber(questionNumber + 1);
   };
 
-  const [choosenOpt, setChoosenOpt] = useState([]);
-  const handleSeletectedQuestion = (n) => {
-    let temp = choosenOpt;
-    temp[questionNumber] = n;
-    // setChoosenOpt(temp);
-    setChoosenOpt((preValue) => {
-      return [...preValue, temp];
-    });
-    console.log(n);
-  };
   const prevQuestion = () => {
     setQuestionNumber(questionNumber - 1);
   };
+
   // Destructing question file e.g questions_data[questionNumber].que
   const { que, optA, optB, optC, optD } = questions_data[questionNumber];
 
-  // useEffect(() => {
-  //   let x = choosenOpt[questionNumber];
-  //   if (x !== undefined) {
-  //     document.getElementsByName("option")[x].click();
-  //   } else document.getElementById("nothing").click();
-  // }, [questionNumber]);
+  // saves answers given by user
+  const updateAnswers = ans => {
+    let temp = [...choosenOpt];
+    temp[questionNumber] = ans;
+    setChoosenOpt(temp);
+  };
 
-  const handleClick = (x) => {
-    let array = document.getElementsByClassName("options");
+  useEffect(() => {
+    const ans = choosenOpt[questionNumber];
+    let array = document.getElementsByClassName("option");
     for (var i = 0; i < array.length; i++) {
       array[i].classList.remove("selectedOption");
     }
-    document.getElementById(x).classList.toggle("selectedOption");
-  };
-  const handleAnswer = (value) => {
-    console.log("value:", value);
-  };
+    if (!isNaN(ans)) {
+      array[ans].classList.toggle("selectedOption");
+    }
+  }, [questionNumber, choosenOpt]);
+
   return (
     <div>
       <div className="container">
         <div className="questionandNumber">
           <div className="questions">
-            Q{questionNumber + 1}.{que}
+            Q{questionNumber + 1}. {que}
           </div>
           <div className="options">
             <form method="post">
-              <h3>
-                <div
-                  id="a"
-                  className="options"
-                  name="option"
-                  onClick={(x) => {
-                    handleAnswer(x.target.attributes.value.value);
-                    handleClick("a");
-                    handleSeletectedQuestion(0);
-                  }}
-                  value={optA}
-                >
-                  {optA}
-                </div>
-              </h3>
-              <h3>
-                <div
-                  id="b"
-                  className="options"
-                  name="option"
-                  onClick={(x) => {
-                    handleAnswer(x.target.attributes.value.value);
-                    handleClick("b");
-                    handleSeletectedQuestion(1);
-                  }}
-                  value={optB}
-                >
-                  {optB}
-                </div>
-              </h3>
-              <h3>
-                <div
-                  id="c"
-                  className="options"
-                  name="option"
-                  onClick={(x) => {
-                    handleAnswer(x.target.attributes.value.value);
-                    handleClick("c");
-                    handleSeletectedQuestion(2);
-                  }}
-                  value={optC}
-                >
-                  {optC}
-                </div>
-              </h3>
-              <h3>
-                <div
-                  id="d"
-                  className="options"
-                  name="option"
-                  onClick={(x) => {
-                    handleAnswer(x.target.attributes.value.value);
-                    handleClick("d");
-                    handleSeletectedQuestion(3);
-                  }}
-                  value={optD}
-                >
-                  {optD}
-                </div>
-              </h3>
-              <input
-                type="radio"
-                name="option"
-                value={null}
-                id="nothing"
-                hidden
-              />
+              <div
+                className="option"
+                onClick={e => {
+                  updateAnswers(0);
+                }}
+                value={optA}
+              >
+                {optA}
+              </div>
+              <div
+                className="option"
+                onClick={e => {
+                  updateAnswers(1);
+                }}
+                value={optB}
+              >
+                {optB}
+              </div>
+              <div
+                className="option"
+                onClick={e => {
+                  updateAnswers(2);
+                }}
+                value={optC}
+              >
+                {optC}
+              </div>
+              <div
+                className="option"
+                onClick={e => {
+                  updateAnswers(3);
+                }}
+                value={optD}
+              >
+                {optD}
+              </div>
             </form>
           </div>
         </div>
         <div className="questionNo">
-          <QuestionNo key={questions_data.id} id={questions_data.id} />
+          <QuestionNo />
         </div>
       </div>
       <Footer
